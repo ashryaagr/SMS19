@@ -22,7 +22,7 @@ def profile(request):
 def buy_stock(request, pk):
     if request.method == 'POST':
         try:
-            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile = request.user
         except:
             response_data = {'status': 'error',
                              'message': 'User Does not Exist'}
@@ -72,7 +72,7 @@ def buy_stock(request, pk):
 def sell_stock(request, pk):
     if request.method == 'POST':
         try:
-            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile = user=request.user
         except:
             response_data = {'status': 'error',
                              'message': 'User Does not Exist'}
