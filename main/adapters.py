@@ -8,19 +8,16 @@ import json
 import re
 
 
-"""class SocialAccountAdapter(DefaultSocialAccountAdapter):
+class SocialAccountAdapter(DefaultSocialAccountAdapter):
 
 
     def save_user(self, request, sociallogin, form=None):
         user = DefaultSocialAccountAdapter.save_user(
             self, request, sociallogin, form=form)
-        if UserProfile.objects.filter(user=user).exists():
-            pass
-        else:
-            new_user = UserProfile(user=user, name=user.get_full_name())
-            new_user.save()
+        user.name = user.get_full_name()
+        user.save()
         return redirect('/')
-"""        
+        
 
         
 class AccountAdapter(DefaultAccountAdapter):

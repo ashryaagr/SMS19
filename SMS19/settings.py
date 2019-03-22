@@ -60,7 +60,7 @@ AUTHENTICATION_BACKENDS= ['django.contrib.auth.backends.ModelBackend',
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   This is used in production
 ACCOUNT_ADAPTER = "main.adapters.AccountAdapter"
-SOCIALACCOUNT_ADAPTER = "main.adapters.DefaultSocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "main.adapters.SocialAccountAdapter"
 
 # Use email as the primary identifier
 # Specifies the login method to use – whether the user logs in by entering their username, e-mail
