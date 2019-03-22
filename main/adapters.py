@@ -8,7 +8,7 @@ import json
 import re
 
 
-class SocialAccountAdapter(DefaultSocialAccountAdapter):
+"""class SocialAccountAdapter(DefaultSocialAccountAdapter):
 
 
     def save_user(self, request, sociallogin, form=None):
@@ -20,6 +20,8 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
             new_user = UserProfile(user=user, name=user.get_full_name())
             new_user.save()
         return redirect('/')
+"""        
+
         
 class AccountAdapter(DefaultAccountAdapter):
 
@@ -28,28 +30,20 @@ class AccountAdapter(DefaultAccountAdapter):
         from allauth.account.utils import user_username, user_email, user_field
 
         data = form.cleaned_data
-        name = data.get('first_name')
+        name = data.get('name')
         email = data.get('email')
         username = data.get('username')
         user_email(user, email)
         user_username(user, username)
-        name_split = name.split()
-        if len(name):
-            user_field(user, 'first_name', name_split[0])
-        if len(name)>1:
-            user_field(user, 'last_name', name_split[-1])
         if 'password1' in data:
             user.set_password(data["password1"])
         else:
             user.set_unusable_password()
         self.populate_username(request, user)
+        user_field(user, 'name', name)
         if commit:
             # Ability not to commit makes it easier to derive from
             # this adapter by adding
             user.save()
-
-        user_profile = UserProfile.objects.create(user=user)
-        user_profile.name = name
-        user_profile.save()
         
         return user

@@ -60,7 +60,7 @@ AUTHENTICATION_BACKENDS= ['django.contrib.auth.backends.ModelBackend',
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   This is used in production
 ACCOUNT_ADAPTER = "main.adapters.AccountAdapter"
-SOCIALACCOUNT_ADAPTER = "main.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "main.adapters.DefaultSocialAccountAdapter"
 
 # Use email as the primary identifier
 # Specifies the login method to use – whether the user logs in by entering their username, e-mail
@@ -78,7 +78,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = True
 
 # Custom User model for allauth
-# AUTH_USER_MODEL = 'main.UserProfile'  
+AUTH_USER_MODEL = 'main.UserProfile'  
 LOGIN_REDIRECT_URL = '/'
 
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
@@ -133,7 +133,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
