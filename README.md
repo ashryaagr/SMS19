@@ -94,4 +94,6 @@ python manage.py createsuperuser
 - migration changes <https://stackoverflow.com/questions/29902366/django-migration-is-not-applying-the-migration-changes>
 - Various settings : <https://django-allauth.readthedocs.io/en/latest/configuration.html>
 (These settings are to be written in the portion made in settings.py for the allauth configuration)
-- Extending user model : <https://wsvincent.com/django-custom-user-model-tutorial/>
+- Extending user model : 
+    - <https://wsvincent.com/django-custom-user-model-tutorial/>
+    - <https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#a-full-example>
