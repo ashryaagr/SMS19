@@ -8,8 +8,8 @@ import json
 import re
 
 
-class SocialAccountAdapter(DefaultSocialAccountAdapter):
 
+class SocialAccountAdapter(DefaultSocialAccountAdapter):
 
     def save_user(self, request, sociallogin, form=None):
         user = DefaultSocialAccountAdapter.save_user(
@@ -17,7 +17,6 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         user.name = user.get_full_name()
         user.save()
         return redirect('/')
-        
 
         
 class AccountAdapter(DefaultAccountAdapter):
