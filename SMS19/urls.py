@@ -16,13 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main import views
+from django.conf.urls import url
 
 
 urlpatterns = [
 
-    path('accounts/logout/', views.user_logout, name='user_logout'),
-    path('accounts/forgot_password/', views.user_forgot_password,
-         name='user_forgot_password'),
     path('admin/', admin.site.urls),
     path('', views.game, name='game'),
     path('profile/', views.profile, name='profile'),
@@ -32,8 +30,6 @@ urlpatterns = [
     path('delete_newspost/<pk>/', views.delete_newspost, name='delete_newspost'),
     path('buy_stock/<pk>/', views.buy_stock, name='buy_stock'),
     path('sell_stock/<pk>/', views.sell_stock, name='sell_stock'),
-    path('accounts/register/', views.register, name='register'),
-    path('accounts/login/', views.user_login, name='user_login'),
     path('accounts/', include('allauth.urls')),
     path('test/', views.test, name="test"),
     path('get_stock_purchased', views.get_stock_purchased,

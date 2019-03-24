@@ -58,13 +58,15 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
 # EMAIL_BACKEND so allauth can proceed to send confirmation emails
 # ONLY for development/testing use console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   This is used in production
+ACCOUNT_ADAPTER = "main.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "main.adapters.SocialAccountAdapter"
 
 # Use email as the primary identifier
 # Specifies the login method to use – whether the user logs in by entering their username, e-mail
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 # Custom allauth settings
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -76,9 +78,16 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = True
 
 # Custom User model for allauth
-# AUTH_USER_MODEL = 'main.UserProfile'
+
+AUTH_USER_MODEL = 'main.UserProfile'  
+
 LOGIN_REDIRECT_URL = '/'
 
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+ACCOUNT_FORMS = {
+    'signup': 'main.forms.CustomSignupForm',
+}
 # <--------------------------Django allauth configurations end------------------------------------------->
 
 
@@ -97,7 +106,7 @@ ROOT_URLCONF = 'SMS19.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'main','templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,10 +136,9 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
-
+# Remove these validators if you want to remove the password strength check
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -166,7 +174,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-LOGIN_URL = 'user_login'
+LOGIN_URL = 'account_login'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
